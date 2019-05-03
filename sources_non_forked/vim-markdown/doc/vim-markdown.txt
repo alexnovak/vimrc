@@ -24,6 +24,7 @@ Contents ~
    2. YAML Front Matter                        |vim-markdown-yaml-front-matter|
    3. TOML Front Matter                        |vim-markdown-toml-front-matter|
    4. JSON Front Matter                        |vim-markdown-json-front-matter|
+   5. Strikethrough                                |vim-markdown-strikethrough|
   11. Adjust new list item indent    |vim-markdown-adjust-new-list-item-indent|
   12. Do not require .md extensions for Markdown links
                 |vim-markdown-do-not-require-.md-extensions-for-markdown-links|
@@ -132,6 +133,7 @@ Options ~
 
 -------------------------------------------------------------------------------
                                                  *vim-markdown-disable-folding*
+                                              *g:vim_markdown_folding_disabled*
 Disable Folding ~
 
 Add the following line to your '.vimrc' to disable the folding configuration:
@@ -146,6 +148,8 @@ To enable/disable folding use Vim's standard folding configuration.
 <
 -------------------------------------------------------------------------------
                                                *vim-markdown-change-fold-style*
+                                        *g:vim_markdown_folding_style_pythonic*
+                                             *g:vim_markdown_override_foldtext*
 Change fold style ~
 
 To fold in a style like python-mode [6], add the following to your '.vimrc':
@@ -161,6 +165,7 @@ To prevent foldtext from being set add the following to your '.vimrc':
 <
 -------------------------------------------------------------------------------
                                         *vim-markdown-set-header-folding-level*
+                                                 *g:vim_markdown_folding_level*
 Set header folding level ~
 
 Folding level is a number between 1 and 6. By default, if not specified, it is
@@ -175,6 +180,7 @@ Tip: it can be changed on the fly with:
 <
 -------------------------------------------------------------------------------
                                     *vim-markdown-disable-default-key-mappings*
+                                       *g:vim_markdown_no_default_key_mappings*
 Disable Default Key Mappings ~
 
 Add the following line to your '.vimrc' to disable default key mappings:
@@ -185,6 +191,7 @@ You can also map them by yourself with '<Plug>' mappings.
 
 -------------------------------------------------------------------------------
                                       *vim-markdown-enable-toc-window-auto-fit*
+                                                   *g:vim_markdown_toc_autofit*
 Enable TOC window auto-fit ~
 
 Allow for the TOC window to auto-fit when it's possible for it to shrink. It
@@ -194,6 +201,7 @@ never increases its default size (half screen), it only shrinks.
 <
 -------------------------------------------------------------------------------
                        *vim-markdown-text-emphasis-restriction-to-single-lines*
+                                            *g:vim_markdown_emphasis_multiline*
 Text emphasis restriction to single-lines ~
 
 By default text emphasis works across multiple lines until a closing token is
@@ -204,6 +212,7 @@ for it to be applied a closing token must be found on the same line). To do so:
 <
 -------------------------------------------------------------------------------
                                                *vim-markdown-syntax-concealing*
+                                                       *g:vim_markdown_conceal*
 Syntax Concealing ~
 
 Concealing is set for some syntax.
@@ -230,6 +239,7 @@ your '.vimrc':
 <
 -------------------------------------------------------------------------------
                                      *vim-markdown-fenced-code-block-languages*
+                                              *g:vim_markdown_fenced_languages*
 Fenced code block languages ~
 
 You can use filetype name as fenced code block languages for syntax
@@ -248,6 +258,8 @@ Default is "['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']".
 
 -------------------------------------------------------------------------------
                                             *vim-markdown-follow-named-anchors*
+                                                 *g:vim_markdown_follow_anchor*
+                                                    *g:vim_markdown_anchorexpr*
 Follow named anchors ~
 
 This feature allows the 'ge' command to follow named anchors in links of the
@@ -284,6 +296,7 @@ are off by default.
 
 -------------------------------------------------------------------------------
                                                       *vim-markdown-latex-math*
+                                                          *g:vim_markdown_math*
 LaTeX math ~
 
 Used as '$x^2$', '$$x^2$$', escapable as '\$x\$' and '\$\$x\$\$'.
@@ -292,6 +305,7 @@ Used as '$x^2$', '$$x^2$$', escapable as '\$x\$' and '\$\$x\$\$'.
 <
 -------------------------------------------------------------------------------
                                                *vim-markdown-yaml-front-matter*
+                                                   *g:vim_markdown_frontmatter*
 YAML Front Matter ~
 
 Highlight YAML front matter as used by Jekyll or Hugo [7].
@@ -300,6 +314,7 @@ Highlight YAML front matter as used by Jekyll or Hugo [7].
 <
 -------------------------------------------------------------------------------
                                                *vim-markdown-toml-front-matter*
+                                              *g:vim_markdown_toml_frontmatter*
 TOML Front Matter ~
 
 Highlight TOML front matter as used by Hugo [7].
@@ -310,6 +325,7 @@ TOML syntax highlight requires vim-toml [8].
 <
 -------------------------------------------------------------------------------
                                                *vim-markdown-json-front-matter*
+                                              *g:vim_markdown_json_frontmatter*
 JSON Front Matter ~
 
 Highlight JSON front matter as used by Hugo [7].
@@ -319,7 +335,17 @@ JSON syntax highlight requires vim-json [9].
   let g:vim_markdown_json_frontmatter = 1
 <
 -------------------------------------------------------------------------------
+                                                   *vim-markdown-strikethrough*
+                                                 *g:vim_markdown_strikethrough*
+Strikethrough ~
+
+Strikethrough uses two tildes. '~~Scratch this.~~'
+>
+  let g:vim_markdown_strikethrough = 1
+<
+-------------------------------------------------------------------------------
                                      *vim-markdown-adjust-new-list-item-indent*
+                                          *g:vim_markdown_new_list_item_indent*
 Adjust new list item indent ~
 
 You can adjust a new list indent. For example, you insert a single line like
@@ -340,6 +366,7 @@ of indent is 4. If you'd like to change the number as 2, just write:
 <
 -------------------------------------------------------------------------------
                 *vim-markdown-do-not-require-.md-extensions-for-markdown-links*
+                                     *g:vim_markdown_no_extensions_in_markdown*
 Do not require .md extensions for Markdown links ~
 
 If you want to have a link like this '[link text](link-url)' and follow it for
@@ -356,6 +383,7 @@ work. So this option adds some consistency between the two.
 
 -------------------------------------------------------------------------------
                                   *vim-markdown-auto-write-when-following-link*
+                                                     *g:vim_markdown_autowrite*
 Auto-write when following link ~
 
 If you follow a link like this '[link text](link-url)' using the 'ge' shortcut,
@@ -365,6 +393,7 @@ this option will automatically save any edits you made before moving you:
 <
 -------------------------------------------------------------------------------
                                    *vim-markdown-change-default-file-extension*
+                                            *g:vim_markdown_auto_extension_ext*
 Change default file extension ~
 
 If you would like to use a file extension other than '.md' you may do so using
@@ -374,6 +403,7 @@ the 'vim_markdown_auto_extension_ext' variable:
 <
 -------------------------------------------------------------------------------
                         *vim-markdown-do-not-automatically-insert-bulletpoints*
+                                           *g:vim_markdown_auto_insert_bullets*
 Do not automatically insert bulletpoints ~
 
 Automatically inserting bulletpoints can lead to problems when wrapping text
@@ -388,6 +418,7 @@ well, or you will have to remove an indent each time you add a new list item:
 <
 -------------------------------------------------------------------------------
                                     *vim-markdown-change-how-to-open-new-files*
+                                                   *g:vim_markdown_edit_url_in*
 Change how to open new files ~
 
 By default when following a link the target file will be opened in your current
